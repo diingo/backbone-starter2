@@ -38,14 +38,8 @@ $('.new-comment button').on('click', function (e) {
 
 var ShowCommentsView = Backbone.View.extend({
 
-  initialize: function(options){
-    this.comments = [
-      {       { username: 'xXx_coolkid_xXx', message: 'dude ur almost as kool as me' },
-      { username: 'top_redditr', message: 'old' },
-      { username: 'l33tschool', message: 'w/e man u cnt b33t m3' }
-      {},
-      {}
-    ];
+  initialize: function(options) {
+      this.comments = options.comments;
   },
   render: function () {
     // Empty the comments content div so that we don't duplicate comments
@@ -60,5 +54,11 @@ var ShowCommentsView = Backbone.View.extend({
     return this;
   }
 });
-var commentsView = new ShowCommentsView();
+var initialComments = [
+  { username: 'xXx_coolkid_xXx', message: 'dude ur almost as kool as me' },
+  { username: 'top_redditr', message: 'old' },
+  { username: 'l33tschool', message: 'w/e man u cnt b33t m3' }
+];
+
+var commentsView = new ShowCommentsView({ comments: initialComments });
 commentsView.render();
