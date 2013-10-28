@@ -43,12 +43,12 @@ var ShowCommentsView = Backbone.View.extend({
   },
   render: function () {
     // Empty the comments content div so that we don't duplicate comments
-    $('#show-comments .content').empty();
+    $(this.el).empty();
 
     // For each comment, generate html and add it to the page
     for (var i = 0; i < comments.length; i += 1) {
       var newCommentHtml = commentTemplate( comments[i] );
-      $('#show-comments .content').append(newCommentHtml);
+      $(this.el).append(newCommentHtml);
     }
 
     return this;
@@ -60,5 +60,7 @@ var initialComments = [
   { username: 'l33tschool', message: 'w/e man u cnt b33t m3' }
 ];
 
-var commentsView = new ShowCommentsView({ comments: initialComments });
+var commentsView = new ShowCommentsView({ comments: initialComments,
+  el: $('#show-comments .content') 
+  });
 commentsView.render();
