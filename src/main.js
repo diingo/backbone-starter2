@@ -21,17 +21,7 @@ var commentTemplate = _.template(commentTemplateHtml);
 //   }
 // };
 
-$('.new-comment button').on('click', function (e) {
-  var newUsername = $('.new-comment [name=username]').val();
-  var newMessage = $('.new-comment [name=message]').val();
-  // Add new comment to our comments array
-  comments.push({
-    username: newUsername,
-    message: newMessage
-  });
-  // Re-render the comments so the new one shows up
-  render();
-});
+
 
 // Render initial comments on page load
 // render();
@@ -46,8 +36,8 @@ var ShowCommentsView = Backbone.View.extend({
     $(this.el).empty();
 
     // For each comment, generate html and add it to the page
-    for (var i = 0; i < comments.length; i += 1) {
-      var newCommentHtml = commentTemplate( comments[i] );
+    for (var i = 0; i < this.comments.length; i += 1) {
+      var newCommentHtml = commentTemplate( this.comments[i] );
       $(this.el).append(newCommentHtml);
     }
 
@@ -64,3 +54,15 @@ var commentsView = new ShowCommentsView({ comments: initialComments,
   el: $('#show-comments .content') 
   });
 commentsView.render();
+
+$('.new-comment button').on('click', function (e) {
+  var newUsername = $('.new-comment [name=username]').val();
+  var newMessage = $('.new-comment [name=message]').val();
+  // Add new comment to our comments array
+  comments.push({
+    username: newUsername,
+    message: newMessage
+  });
+  // Re-render the comments so the new one shows up
+  commentsView.render();
+});
