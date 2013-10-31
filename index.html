@@ -5,7 +5,39 @@
 </head>
 <body>
 
-<div id="templates"></div>
+<div class="button">
+</div>
+
+<div class="big-button">
+</div>
+
+<div class="stock-price"></div>
+<div class="stock-price"></div>
+
+<div class="button_one"></div>
+
+<div class="profile"></div>
+
+<div id="templates">
+  <div class="dress">
+    <p>{{color}} {{price}}</p>
+  </div>
+</div>
+
+<!-- <div id="templates">
+  <div class="button">
+    <p>{{buttonText}}</p>
+  </div> 
+</div> -->
+
+<!-- This also works if replace 'script' with div, and remove 'type' -->
+<div id="templates">
+        <script type="text/template" class="button">
+                <button>{{buttonText}}</button>
+        </script>
+</div>
+
+
 
 <!-- 3rd-party scripts -->
 <script src="vendor/jquery-1.10.2.js" type="text/javascript"></script>
