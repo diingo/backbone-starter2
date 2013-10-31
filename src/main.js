@@ -167,8 +167,36 @@ $('body').append(dressOnSaleYo.el);
 var pingServer = _.extend({}, Backbone.Events);
 
 var StudentView = Backbone.View.extend({
-  
+  initialize: function(options) {
+  },
+  ping: function() {
+    pingServer.trigger('ping', this.name);
+  }
 });
+
+var InstructorView = Backbone.View.extend({
+  totalPings: 0,
+  initialize: function(options) {
+    this.listenTo(pingServer, 'ping', this.recordPop)
+  },
+  recordPop: function(name) {
+    this.totalPings += 1;
+  }
+});
+
+var alice = new StudentView({ name: 'Alice' });
+var bob = new StudentView({ name: 'Bob' });
+var instructor = new InstructorView({ name: 'Dr. Professor' });
+
+alice.ping();
+alice.ping();
+console.log('Instructor should have 2 pings:', instructor.totalPings);
+bob.ping();
+bob.ping();
+bob.ping();
+bob.ping();
+bob.ping();
+console.log('Instructor should have 7 pings:', instructor.totalPings);
 
 
 
