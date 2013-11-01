@@ -1,3 +1,5 @@
+// http://learn.themakersquare.com/pages/immersive/week-5/backbone-models
+
 //3
 var Todo = Backbone.Model.extend({
 
@@ -137,8 +139,52 @@ bigBoard.damage(4);
 bigBoard.damage(4);
 console.log('Big board hp should be zero:', bigBoard.get('hp'));
 
+//9
+// var Stock = Backbone.Model.extend({
+//   raise: function(amount) {
+//     this.set({price: this.get('price') + amount}); 
+//   }
+// });
+
+// var StockView = Backbone.View.extend({
+//   initialize: function(options) {
+//     this.listenTo(this.model, 'change:price', this.onPriceChange);
+//   },
+//   onPriceChange: function(model) {
+//     console.log('New price for', this.model.get('name'), this.model.get('price'));
+//     this.render();
+//   },
+//   render: function(){
+//     //render stuff
+//     console.log('Rendering', this.model.get('name'));
+//   }
+
+// });
+
+// var stock = new Stock({
+//   name: 'AAPL',
+//   price: 480
+// });
+
+// var stockView = new StockView({
+//   model: stock
+// });
+
+// //Raising the price causes the view to re-render
+// stock.raise(0.5);
 
 
+//10
+
+var Stock = Backbone.Model.extend({
+  change: function(amount) {
+
+  }
+});
+
+var stock = new Stock({
+  
+});
 
 
 
