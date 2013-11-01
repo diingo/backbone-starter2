@@ -177,17 +177,18 @@ console.log('Big board hp should be zero:', bigBoard.get('hp'));
 //10
 
 var Stock = Backbone.Model.extend({
-  initialize: function(){
 
-  },
   change: function(amount) {
     this.set({ price: this.get('price') + amount });
   }
 });
 
 var StockView = Backbone.View.extend({
+  initialize: function(){
+    this.listenTo(this.model, "change:price", this.render);
+  },
   render: function() {
-    $(this.el).html("<p>" + this.model.get('name')+ this.model.get('price') "</p>")
+    $(this.el).html("<p>" + this.model.get('name') + ": " + this.model.get('price') + "</p>");
   }
 })
 
@@ -195,7 +196,7 @@ var stock = new Stock({
   name: 'YHOO',
   price: 34.03
 });
-var stockView = new StockView({ model: stock });
+var stockView = new StockView({ model: stock, el: $('.stock_price') });
 
 //Render and add to page
 stockView.render();
