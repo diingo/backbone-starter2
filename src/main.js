@@ -177,14 +177,38 @@ console.log('Big board hp should be zero:', bigBoard.get('hp'));
 //10
 
 var Stock = Backbone.Model.extend({
-  change: function(amount) {
+  initialize: function(){
 
+  },
+  change: function(amount) {
+    this.set({ price: this.get('price') + amount });
   }
 });
 
+var StockView = Backbone.View.extend({
+  render: function() {
+    $(this.el).html("<p>" + this.model.get('name')+ this.model.get('price') "</p>")
+  }
+})
+
 var stock = new Stock({
-  
+  name: 'YHOO',
+  price: 34.03
 });
+var stockView = new StockView({ model: stock });
+
+//Render and add to page
+stockView.render();
+$('.stocks').append(stockView.el);
+
+//Perform an update every two seconds
+var updateLoop = function() {
+  var priceChangeAmount = Math.round(Math.random() * 300 - 150) / 100;
+  stock.change(priceChangeAmount);
+  setTimeout(updateLoop, 2000);
+};
+updateLoop();
+
 
 
 
