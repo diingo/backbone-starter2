@@ -5,6 +5,7 @@
 
   window.ShirtView = Backbone.View.extend({
     className: 'shirt',
+
     render: function () {
       // TODO: Complete the following line
       var newShirtHtml = shirtTemplate( this.model.toJSON() );
