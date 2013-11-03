@@ -23,7 +23,9 @@
   window.updateStocks = function (data) {
 
     _.each(data.query.results.quote, function (quote) {
-      var stock = _.find(stocks, function (s) { return s.get('name') == quote.symbol });
+      var stock = _.find(stocks, function (s) { 
+        return s.get('name') == quote.symbol 
+      });
       stock.updatePrice(quote.AskRealtime);
     });
     setTimeout(updateLoop, 3000);
