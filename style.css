@@ -6,3 +6,11 @@ body {
 #templates {
   display: none;
 }
+
+.book {
+  background: #27a6a6;
+  padding: 20px;
+  float: left;
+  margin: 10px;
+  width: 200px;
+}
