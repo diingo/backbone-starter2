@@ -6,3 +6,11 @@ body {
 #templates {
   display: none;
 }
+
+.up {
+  color: green;
+}
+
+.down {
+  color: red;
+}
